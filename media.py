@@ -16,18 +16,20 @@ class Movie:
     the website's HTML. 
     """
 
-    def __init__(self, title, storyline, youtube_url, image_url,
-                 release_year=None, movie_info=None):
+    # def __init__(self, title, storyline, youtube_url, image_url,
+    #              release_year=None, movie_info=None):
+
+    def __init__(self, title,  **kwargs):
         """Constructor for Movie class.
         
         Sets Movie instance attributes.
         
         Args:
             title (str): The title of the movie.
-            storyline (str): The plot/storyline of the movie.
-            youtube_url (str): A URL pointing to a                 
+            storyline (str|None): The plot/storyline of the movie.
+            youtube_url (str|None): A URL pointing to a                 
                 youtube.com video of a trailer of the movie.
-            image_url (str): A URL pointing to an image of the movie 
+            image_url (str|None): A URL pointing to an image of the movie 
                 poster or box art.
             release_year (str|None): The year the move was 
                 released in theater.
@@ -35,11 +37,12 @@ class Movie:
                 additional movie information.
         """
         self.title = title
-        self.year = release_year
-        self.storyline = storyline
-        self.trailer_youtube_url = youtube_url
-        self.poster_image_url = image_url
-        self.info = movie_info
+        self.year = kwargs.get('year', None)
+        self.storyline = kwargs.get('plot', None)
+        self.trailer_youtube_url = kwargs.get('trailer_youtube_url', None)
+        self.trailer_youtube_id = kwargs.get('trailer_youtube_id', None)
+        self.poster_image_url = kwargs.get('poster', None)
+        self.info = kwargs
 
     def show_trailer(self):
         """Opens trailer_youtube_url in default web browser."""
@@ -54,12 +57,12 @@ class Movie:
         """Fetch data on movie using omdbapi and youtube API.
 
         Using the functions from search.py this static function returns a 
+        dictionary of the metadata.
 
         Args:
             movie_title (str): The movie title.
             year (str|None): The movie's release year.
             *queries (str): Additional query terms.
-
         Returns:
             dict: A dictionary of compiled movie info.
         """
