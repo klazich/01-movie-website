@@ -1,8 +1,8 @@
-"""A valid youtube.com and omdbapi.com API key are needed for the public 
+"""A valid YouTube.com and omdbapi.com API key are needed for the public 
 functions in this module to work. For information on obtaining an API key 
 for these services, follow the links bellow.
 
-    - Youtube API key: https://developers.google.com/youtube/v3/getting-started
+    - YouTube API key: https://developers.google.com/youtube/v3/getting-started
     - OMDB API key: http://www.omdbapi.com
 """
 import requests
@@ -28,17 +28,17 @@ def _lower_keys(dictionary):
 
 
 def youtube_search(dev_key):
-    """Builds the Youtube service object and returns a function to use it.
+    """Builds the YouTube service object and returns a function to use it.
 
-    Using the Google API client Python library and a valid Youtube API key, 
+    Using the Google API client Python library and a valid YouTube API key, 
     this function returns a function that can make tailored api calls to 
     search for movie trailers.
 
     Args:
-        dev_key (str): A valid Youtube API key needed to make requests to 
-            the Youtube API. 
+        dev_key (str): A valid YouTube API key needed to make requests to 
+            the YouTube API. 
     Returns:
-        object(): A function that makes specific calls to to the Youtube 
+        object(): A function that makes specific calls to to the YouTube 
         service object.
 
     References:
@@ -47,7 +47,7 @@ def youtube_search(dev_key):
     youtube = build('youtube', 'v3', developerKey=dev_key)
 
     def youtube_video_id_requester(title, *args):
-        """Makes tailored API calls to Youtube using the built service obj.
+        """Makes tailored API calls to YouTube using the built service obj.
 
         Using the built service object this function makes API calls specific 
         to movie trailers (see the `payload` variable below).
@@ -57,7 +57,7 @@ def youtube_search(dev_key):
             *args (str|None): Additional words to add to query. 
                 Such as the movie's release year.
         Returns:
-            str: The Youtube video ID linked to the top search result.
+            str: The YouTube video ID linked to the top search result.
 
         References:
             - https://developers.google.com/youtube/v3/docs/search/list

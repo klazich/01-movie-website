@@ -12,5 +12,4 @@ BRICK = Movie.movie('Brick')
 
 MOVIES = [INCEPTION, PRIMER, SNATCH, MAD_MAX, BLADE_RUNNER, BRICK]
 
-open_movies_page(MOVIES)
-
+open_movies_page(MOVIES)  # Generate HTML and open in browser

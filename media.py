@@ -2,11 +2,16 @@ import webbrowser
 import search
 import config
 
-# For constructing a youtube link from a youtube video ID.
+# For constructing a youtube URL from a youtube video ID.
 YOUTUBE_URL = 'https://www.youtube.com/watch?v={}'
 
-get_youtube_id = search.youtube_search(config.YOUTUBE_API_KEY)
-get_omdb_movie_info = search.omdb_search(config.OMDB_API_KEY)
+# We are using api keys saved in a config file. This is just to simulate key
+# obfuscation of
+YOUTUBE_API_KEY = config.YOUTUBE_API_KEY
+OMDB_API_KEY = config.OMDB_API_KEY
+
+get_youtube_id = search.youtube_search(YOUTUBE_API_KEY)
+get_omdb_movie_info = search.omdb_search(OMDB_API_KEY)
 
 
 class Movie:
@@ -25,7 +30,7 @@ class Movie:
         Keyword Args:
             title (str): The title of the movie.
             plot (str): The plot of the movie.
-            youtube_url (str): A URL pointing to a youtube.com video of a 
+            youtube_url (str): A URL pointing to a YouTube video of a 
                 trailer of the movie.
             image_url (str): A URL pointing to an image of the movie poster 
                 or box art.
@@ -83,7 +88,7 @@ class Movie:
 
     @staticmethod
     def get_movie_data(movie_title, year=None, *queries):
-        """Fetch data on movie using omdbapi and youtube API.
+        """Fetch data on movie using omdbapi and YouTube API.
 
         Using the functions from search.py this static function returns a 
         dictionary of the data.
@@ -99,7 +104,7 @@ class Movie:
         video_id = get_youtube_id(movie_title, year, *queries)
 
         data = movie_info
-        # Add youtube data to dictionary
+        # Add YouTube data to dictionary
         data['youtube_id'] = video_id
         data['youtube_url'] = YOUTUBE_URL.format(video_id)
 
