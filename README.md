@@ -4,9 +4,9 @@
     <img src="https://github.com/klazich/01-movie-website/blob/master/images/udacity-logo.png?raw=true"
          alt="Udacity"
          align="middle">
-    <img src="./images/python-2.7-blue.svg"
+    <img src="https://img.shields.io/badge/python-2.7-blue.svg"
          alt="Python27"
-         align="middle">
+         align="right">
 </p>
 
 <!--
@@ -23,7 +23,7 @@
  - [ ] License
 -->
 
-###### *Created for the Move Website project while takeing the Udacity Full Stack Web Development Nanodegree*
+###### *Created for the Move Website project while taking the Udacity Full Stack Web Development Nanodegree*
 
 # class-movie-website
 
