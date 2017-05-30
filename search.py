@@ -28,7 +28,8 @@ def _lower_keys(dictionary):
         dict: The dictionary with all keys now lowercase.
     """
     lowered_dictionary = dict()
-    for key, value in dictionary.iteritems():
+    for key in dictionary:
+        value = dictionary[key]
         lowered_dictionary[str(key.lower())] = str(value)
     return lowered_dictionary
 
