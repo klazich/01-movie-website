@@ -40,10 +40,10 @@ class-movie-website does 3 things:
 2. The Movie class also provides access to OMDB and YouTube APIs if additional
    data retrieval is needed.
    > For details on OMDB and YouTube API functionality see
-   > [get_movie_data](#static-movieget-movie-datamovie-title-yearnone-queries)
+   > [get_movie_data](#static-movieget_movie_datamovie_title-yearnone-queries)
    > and [OMDB and YouTube API](#omdb-and-youtube-api).
 
-3. Given a list of Movie class objects [Fresh Tomatoes](#fresh-tomatoespy) will
+3. Given a list of Movie class objects [Fresh Tomatoes](#fresh_tomatoespy) will
    generated the HTML for a movie review web page featuring the provided movies.
 
 
@@ -105,23 +105,23 @@ open_movies_page(MOVIES)
 - **media.py**
   - [Movie()](#movie-instantiation)
     - Construction
-      - [m = Movie()](#m--movietitle-plot-youtube-url-image-url-movie-datanone)
-    - Attributes
-      - [m.title](#mtitle-str)
-      - [m.plot](#mplot-str)
-      - [m.trailer_youtube_url](#mtrailer-youtube-url-str)
-      - [m.poster_image_url](#mposter-image-url-str)
-      - [m.info](#minfo-dict)
+      - [m = Movie()](#m--movietitle-plot-youtube_url-image_url-movie_datanone)
+    - [Attributes](#attributes)
+      - m.title
+      - m.plot
+      - m.trailer_youtube_url
+      - m.poster_image_url
+      - m.info
     - Methods
-      - [m.show_trailer()](#mshow-trailer)
-      - [m.show_poster()](#mshow-poster)
-      - [Movie.get_movie_data()](#static-movieget-movie-datamovie-title-yearnone-queries)
-      - [Movie.movie()](#static-m--moviemoviemovie-title-yearnone)
+      - [m.show_trailer()](#mshow_trailer)
+      - [m.show_poster()](#mshow_poster)
+      - [Movie.get_movie_data()](#static-movieget_movie_datamovie_title-yearnone-queries)
+      - [Movie.movie()](#static-m--moviemoviemovie_title-yearnone)
 - **search.py**
-  - [youtube_video_id()](#youtube-video-idtitle-args)
-  - [omdb_movie_info()](#omdb-movie-infotitle-yearnone)
+  - [youtube_video_id()](#youtube_video_idtitle-args)
+  - [omdb_movie_info()](#omdb_movie_infotitle-yearnone)
 - **fresh_tomatoes.py**
-  - [open_movies_page()](#open-movies-pagemovie)
+  - [open_movies_page()](#open_movies_pagemovie)
 
 ### [media.py](./media.py)
 
@@ -129,20 +129,20 @@ open_movies_page(MOVIES)
 
 There are two ways to create a `Movie` object:
 1. via the `Movie` class constructor
-2. via a static method, `Movie.movie` that first [fetches movie data](#search)
+2. via a static method, `Movie.movie` that first [fetches movie data](#searchpy)
    and returns a new Movie instance using retrieved data.
 
 ##### m = Movie(title, plot, youtube_url, image_url, movie_data=None)
 
 > **m** being the new instance of Movie
 
-- **title** <sub>*[str]*</sub> (*required*) --- The movie's title
-- **plot** <sub>*[str]*</sub> (*required*) --- The movie's plot/storyline
-- **youtube_url** <sub>*[str]*</sub> (*required*) --- A URL to a video of a movie
+- **title** <sub>*[str]*</sub> (*required*) - The movie's title
+- **plot** <sub>*[str]*</sub> (*required*) - The movie's plot/storyline
+- **youtube_url** <sub>*[str]*</sub> (*required*) - A URL to a video of a movie
   trailer on YouTube
-- **image_url** <sub>*[str]*</sub> (*required*) --- A URL to an image of a movie
+- **image_url** <sub>*[str]*</sub> (*required*) - A URL to an image of a movie
   poster or box art
-- **movie_data** <sub>*[dict]*</sub> (*optional*) --- A Python
+- **movie_data** <sub>*[dict]*</sub> (*optional*) - A Python
   dictionary<sup>[1](#footnote-1)</sup> of additional movie information
 
 
@@ -171,10 +171,10 @@ Opens the URL `poster_image_url` in a web browser.
 
 ##### *`static`* **Movie.get_movie_data(movie_title, year=None, \*queries)**
 
-- **movie_title** <sub>*[str]*</sub> (*required*) --- The movie's title.
-- **year** <sub>*[str]*</sub> (*optional*) --- The movie's release year.
+- **movie_title** <sub>*[str]*</sub> (*required*) - The movie's title.
+- **year** <sub>*[str]*</sub> (*optional*) - The movie's release year.
 - **\*queries** <sub>*[str]*</sub>
-  (*optional;variadic<sup>[2](#footnote-2)</sup>*) --- A variable number of
+  (*optional;variadic<sup>[2](#footnote-2)</sup>*) - A variable number of
   additional query terms.
 
 Returns a dictionary with movie data provided by YouTube and OMDB API queries
@@ -182,10 +182,10 @@ regarding movie_title, year and any additional queries.
 
 ##### *`static`* m = Movie.movie(movie_title, year=None)
 
-- **m** --- Instance of class Movie.
-- **movie_title** <sub>*[str]*</sub> (*required*) --- The movie's title (used in API
+- **m** - Instance of class Movie.
+- **movie_title** <sub>*[str]*</sub> (*required*) - The movie's title (used in API
   queries)
-- **year** <sub>*[str]*</sub> (*optional*) --- The movie's release year (used in API
+- **year** <sub>*[str]*</sub> (*optional*) - The movie's release year (used in API
   queries)
     > Helpful when there are several movies of the same name, such as *Mad Max*.
     If we wanted the original film, `year` would be `'1979'`. Or, `'2015'` for
@@ -201,9 +201,9 @@ Movie instance constructed with that data.
 ##### youtube_video_id(title, \*args)
 > A [YouTube API key](#footnote-3) is required for this to function.
 
-- **title** <sub>*[str]*</sub> (*required*) --- The movie's title for the search
+- **title** <sub>*[str]*</sub> (*required*) - The movie's title for the search
   query.
-- **\*args** <sub>*[str]*</sub> (*optional*) --- A variable number of additional
+- **\*args** <sub>*[str]*</sub> (*optional*) - A variable number of additional
   query terms (such as *year*).
 
 Builds a YouTube API service object and places API search calls tailored for
@@ -212,8 +212,8 @@ movie trailer queries and returns a YouTube video id.
 ##### omdb_movie_info(title, year=None)
 > A [omdbapi.com API key](#footnote-4) is required for this to function.
 
-- **title** <sub>*[str]*</sub> (*required*) --- The movie's title to search for.
-- **year** <sub>*[str]*</sub> (*optional*) --- The movie's release year to search
+- **title** <sub>*[str]*</sub> (*required*) - The movie's title to search for.
+- **year** <sub>*[str]*</sub> (*optional*) - The movie's release year to search
   for.
 
 Places HTTP GET request to omdbapi.com using the Python package [requests](http://docs.python-requests.org/en/master/).
@@ -226,7 +226,7 @@ this dictionary looks like.).
 ##### open_movies_page(\[*Movie\])
 
 - \[*Movie\]
-  <sub>[list]\(\*[Movie](#m--movietitle-plot-youtube-url-image-url-movie-datanone)\)</sub>
+  <sub>[list]\(\*[Movie](#m--movietitle-plot-youtube_url-image_url-movie_datanone)\)</sub>
   (*required*) \- A list of Movie objects.
 
 Generates the HTML for website in projects root directory and using the
@@ -240,7 +240,7 @@ the site in a browser window.
 ## OMDB and YouTube API
 
 The Movie class exposes a static method,
-[`get_movie_data`](#static-movieget-movie-datamovie-title-yearnone-queries) that
+[`get_movie_data`](#static-movieget_movie_datamovie_title-yearnone-queries) that
 uses two api clients from [search.py](./search.py). A YouTube API client and a
 omdbapi.com HTTP client to fetch movie data and statistics as well as a link to
 a YouTube video of the movie trailer. This functionality is optional and shouldn't
@@ -275,7 +275,7 @@ and know how to use **git clone** and **pip install**.
     $ cd class-movie-website
     ```
 - Be sure you have these packages installed if planning to use
-[`Movie.get_movie_data`](#static-movieget-movie-datamovie-title-yearnone-queries):
+[`Movie.get_movie_data`](#static-movieget_movie_datamovie_title-yearnone-queries):
     ```pip
     $ pip install --upgrade requests google-api-python-client 
     ```
@@ -300,7 +300,7 @@ and know how to use **git clone** and **pip install**.
 
 ## See Also
 - [Udacity's Nanodegrees](https://www.udacity.com/nanodegree)
-- [webbrowser --- Convenient Web-browser controller](https://docs.python.org/3.7/library/webbrowser.html#module-webbrowser)
+- [webbrowser - Convenient Web-browser controller](https://docs.python.org/3.7/library/webbrowser.html#module-webbrowser)
 - [Requests: HTTP for Humans](http://docs.python-requests.org/en/master/user/install/)
 
 ## Footnotes
