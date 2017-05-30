@@ -1,17 +1,8 @@
 import webbrowser
 import search
-import config
 
 # For constructing a youtube URL from a youtube video ID.
 YOUTUBE_URL = 'https://www.youtube.com/watch?v={}'
-
-# We are using api keys saved in a config file. This is just to simulate key
-# obfuscation of
-YOUTUBE_API_KEY = config.YOUTUBE_API_KEY
-OMDB_API_KEY = config.OMDB_API_KEY
-
-get_youtube_id = search.youtube_search(YOUTUBE_API_KEY)
-get_omdb_movie_info = search.omdb_search(OMDB_API_KEY)
 
 
 class Movie:
@@ -34,7 +25,7 @@ class Movie:
                 trailer of the movie.
             image_url (str): A URL pointing to an image of the movie poster 
                 or box art.
-            movie_data(dict|None): An optional dictionary of 
+            movie_data(dict or None): An optional dictionary of
                 additional movie information.
         """
         self.title = title
@@ -53,29 +44,31 @@ class Movie:
 
     @staticmethod
     def movie(movie_title, year=None):
-        """Shortcut to creating a `Movie` instance with data from 
+        # type: (str, str) -> Movie
+        """Shortcut to creating a `Movie` instance with data from
         `get_movie_data`.
-        
-        This creates a `Movie` instance by using `get_movie_data` to get the 
+
+        This creates a `Movie` instance by using `get_movie_data` to get the
         movie information needed.
-        
+
         Args:
             movie_title (str): The movie title.
             year (): The movie's release year
         Returns:
             Movie: A new `Movie` instance.
-            
+
         Examples:
-            >>> # Creating a `Movie` instance for the movie Arrival using 
-            >>> # `get_movie_data` to first get the values:
+            >>> # Constructing a `Movie` instance with `Movie.movie`...
+            >>> arrival = Movie.movie('Arrival')
+
+            >>> # ...is roughly equivalent to...
             >>> data = Movie.get_movie_data('Arrival')
             >>> arrival = Movie(data['title'],
             ...                 data['plot'],
             ...                 data['youtube_url'],
-            ...                 data['poster'])
-            
-            >>> # The following code does the same as the code above:
-            >>> arrival = Movie.movie('Arrival')
+            ...                 data['poster'],
+            ...                 data)
+            ...
         """
         movie_data = Movie.get_movie_data(movie_title, year)
 
@@ -88,6 +81,7 @@ class Movie:
 
     @staticmethod
     def get_movie_data(movie_title, year=None, *queries):
+        # type: (str, str or None, *str) -> dict
         """Fetch data on movie using omdbapi and YouTube API.
 
         Using the functions from search.py this static function returns a 
@@ -95,13 +89,13 @@ class Movie:
 
         Args:
             movie_title (str): The movie title.
-            year (str|None): The movie's release year.
+            year (str or None): The movie's release year.
             *queries (str): Additional query terms.
         Returns:
             dict: A dictionary of compiled movie info.
         """
-        movie_info = get_omdb_movie_info(movie_title, year)
-        video_id = get_youtube_id(movie_title, year, *queries)
+        movie_info = search.omdb_movie_info(movie_title, year)
+        video_id = search.youtube_video_id(movie_title, year, *queries)
 
         data = movie_info
         # Add YouTube data to dictionary
@@ -109,4 +103,3 @@ class Movie:
         data['youtube_url'] = YOUTUBE_URL.format(video_id)
 
         return data
-
