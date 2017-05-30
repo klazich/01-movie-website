@@ -43,7 +43,7 @@ class-movie-website does 3 things:
    > [get_movie_data](#static-movieget_movie_datamovie_title-yearnone-queries)
    > and [OMDB and YouTube API](#omdb-and-youtube-api).
 
-3. Given a list of Movie class objects [Fresh Tomatoes](#fresh-tomatoespy) will
+3. Given a list of Movie class objects [Fresh Tomatoes](#fresh_tomatoespy) will
    generated the HTML for a movie review web page featuring the provided movies.
 
 
@@ -105,23 +105,23 @@ open_movies_page(MOVIES)
 - **media.py**
   - [Movie()](#movie-instantiation)
     - Construction
-      - [m = Movie()](#m--movietitle-plot-youtube-url-image-url-movie-datanone)
-    - Attributes
-      - [m.title](#mtitle-str)
-      - [m.plot](#mplot-str)
-      - [m.trailer_youtube_url](#mtrailer-youtube-url-str)
-      - [m.poster_image_url](#mposter-image-url-str)
-      - [m.info](#minfo-dict)
+      - [m = Movie()](#m--movietitle-plot-youtube_url-image_url-movie_datanone)
+    - [Attributes](#attributes)
+      - m.title
+      - m.plot
+      - m.trailer_youtube_url
+      - m.poster_image_url
+      - m.info
     - Methods
-      - [m.show_trailer()](#mshow-trailer)
-      - [m.show_poster()](#mshow-poster)
-      - [Movie.get_movie_data()](#static-movieget-movie-datamovie-title-yearnone-queries)
-      - [Movie.movie()](#static-m--moviemoviemovie-title-yearnone)
+      - [m.show_trailer()](#mshow_trailer)
+      - [m.show_poster()](#mshow_poster)
+      - [Movie.get_movie_data()](#static-movieget_movie_datamovie_title-yearnone-queries)
+      - [Movie.movie()](#static-m--moviemoviemovie_title-yearnone)
 - **search.py**
-  - [youtube_video_id()](#youtube-video-idtitle-args)
-  - [omdb_movie_info()](#omdb-movie-infotitle-yearnone)
+  - [youtube_video_id()](#youtube_video_idtitle-args)
+  - [omdb_movie_info()](#omdb_movie_infotitle-yearnone)
 - **fresh_tomatoes.py**
-  - [open_movies_page()](#open-movies-pagemovie)
+  - [open_movies_page()](#open_movies_pagemovie)
 
 ### [media.py](./media.py)
 
@@ -226,7 +226,7 @@ this dictionary looks like.).
 ##### open_movies_page(\[*Movie\])
 
 - \[*Movie\]
-  <sub>[list]\(\*[Movie](#m--movietitle-plot-youtube-url-image-url-movie-datanone)\)</sub>
+  <sub>[list]\(\*[Movie](#m--movietitle-plot-youtube_url-image_url-movie_datanone)\)</sub>
   (*required*) \- A list of Movie objects.
 
 Generates the HTML for website in projects root directory and using the
@@ -240,7 +240,7 @@ the site in a browser window.
 ## OMDB and YouTube API
 
 The Movie class exposes a static method,
-[`get_movie_data`](#static-movieget-movie-datamovie-title-yearnone-queries) that
+[`get_movie_data`](#static-movieget_movie_datamovie_title-yearnone-queries) that
 uses two api clients from [search.py](./search.py). A YouTube API client and a
 omdbapi.com HTTP client to fetch movie data and statistics as well as a link to
 a YouTube video of the movie trailer. This functionality is optional and shouldn't
@@ -275,7 +275,7 @@ and know how to use **git clone** and **pip install**.
     $ cd class-movie-website
     ```
 - Be sure you have these packages installed if planning to use
-[`Movie.get_movie_data`](#static-movieget-movie-datamovie-title-yearnone-queries):
+[`Movie.get_movie_data`](#static-movieget_movie_datamovie_title-yearnone-queries):
     ```pip
     $ pip install --upgrade requests google-api-python-client 
     ```
